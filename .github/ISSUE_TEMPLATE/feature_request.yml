@@ -1,0 +1,17 @@
+name: Feature request
+description: Suggest an improvement to the lab or its documentation.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to learn or accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Include alternatives and any effect on the experiment protocol.
+    validations:
+      required: true

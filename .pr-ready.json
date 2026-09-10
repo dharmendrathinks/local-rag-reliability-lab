@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "checks": {
+    "build": ["uv", "build", "--offline"],
+    "test": ["uv", "run", "--frozen", "pytest", "-q"],
+    "static": ["uv", "run", "--frozen", "python", "-m", "compileall", "-q", "src"]
+  }
+}

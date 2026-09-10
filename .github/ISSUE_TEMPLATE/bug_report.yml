@@ -1,0 +1,33 @@
+name: Bug report
+description: Report a reproducible failure using fictional data.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities, use SECURITY.md. Remove private text, paths, and credentials from all logs."
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, OS, Python, uv, Ollama, and model versions or digests.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Exact commands and minimal fictional inputs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and sanitized error output
+    validations:
+      required: true

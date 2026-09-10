@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Python 3.12 / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
+        with:
+          version: "0.11.32"
+          enable-cache: true
+      - name: Install locked environment
+        run: uv sync --frozen
+      - name: Deterministic lifecycle tests (no Ollama)
+        run: uv run --frozen pytest -q
+      - name: Audit published reference evidence (no inference)
+        run: uv run --frozen python scripts/audit_evidence.py artifacts/20260910T162236Z-9789c2ee > "$RUNNER_TEMP/evidence-audit.json"
+      - name: Compile Python sources
+        run: uv run --frozen python -m compileall -q src
+      - name: Build source distribution and wheel
+        run: uv build

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "local-rag-reliability-lab"
+version = "0.1.0"
+description = "An evidence-first experiment in local RAG document deletion"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Dharmendra Thinks"}]
+keywords = ["rag", "ollama", "chroma", "retrieval", "reproducibility"]
+requires-python = ">=3.12,<3.13"
+dependencies = ["chromadb==1.5.9", "httpx==0.28.1"]
+
+[project.urls]
+Repository = "https://github.com/dharmendrathinks/local-rag-reliability-lab"
+Documentation = "https://github.com/dharmendrathinks/local-rag-reliability-lab#readme"
+Issues = "https://github.com/dharmendrathinks/local-rag-reliability-lab/issues"
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]
+
+[project.scripts]
+raglab = "raglab.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/raglab"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/scripts", "/*.md", "/LICENSE", "/pyproject.toml", "/uv.lock", "/.python-version"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

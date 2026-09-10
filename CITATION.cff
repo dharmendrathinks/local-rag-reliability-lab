@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this lab or its recorded experiment, cite this repository and the commit you used."
+type: software
+title: Local RAG Reliability Lab
+abstract: "A local experiment separating source deletion, active index deletion, retrieval, and generated answers in an Ollama and Chroma RAG pipeline."
+authors:
+  - name: Dharmendra Thinks
+    website: https://github.com/dharmendrathinks
+repository-code: https://github.com/dharmendrathinks/local-rag-reliability-lab
+url: https://github.com/dharmendrathinks/local-rag-reliability-lab
+version: 0.1.0
+license: MIT
+keywords:
+  - RAG
+  - Ollama
+  - Chroma
+  - reproducibility
+  - document deletion
